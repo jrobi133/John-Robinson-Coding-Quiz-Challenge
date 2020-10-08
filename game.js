@@ -2,7 +2,9 @@ const question = document.getElementById("question");
 const choices = Array.from(document.getElementsByClassName("choice-text"));
 const questionCounterText = document.getElementById('questionCounter');
 const scoreText = document.getElementById('score');
+const startingMinutes = 10;
 
+let time = startingMinutes * 60;
 let currentQuestion = {};
 let acceptingAnswers = false;
 let score = 0;
@@ -35,7 +37,20 @@ let questions = [{
     },
 
 ];
+// Timer function
+const countdownEl = document.getElementById('countdown');
 
+setInterval(updateCountdown, 1000);
+
+function updateCountdown() {
+    const minutes = Math.floor(time / 60);
+    let seconds = time % 60;
+
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+
+    countdownEl.innerHTML = `${minutes}:${seconds}`;
+    time--;
+}
 // CONSTANTS
 const CORRECT_BONUS = 10;
 const MAX_QUESTIONS = 3;
