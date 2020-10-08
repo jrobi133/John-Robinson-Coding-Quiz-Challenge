@@ -2,7 +2,7 @@ const question = document.getElementById("question");
 const choices = Array.from(document.getElementsByClassName("choice-text"));
 const questionCounterText = document.getElementById('questionCounter');
 const scoreText = document.getElementById('score');
-const startingMinutes = 10;
+const startingMinutes = 1;
 
 let time = startingMinutes * 60;
 let currentQuestion = {};
@@ -91,6 +91,9 @@ choices.forEach(choice => {
         if (!acceptingAnswers) return;
 
         acceptingAnswers = false;
+
+        // startingMinutes = startingMinutes - 10;
+
         const selectedChoice = e.target;
         const selectedAnswer = selectedChoice.dataset["number"];
 
@@ -99,7 +102,10 @@ choices.forEach(choice => {
             selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
         if (classToApply === "correct") {
             incrementScore(CORRECT_BONUS);
-        }
+        };
+        // else(!correct) {
+        //     startingMinutes = startingMinutes - 10;
+        // }
         selectedChoice.parentElement.classList.add(classToApply);
 
         setTimeout(() => {
