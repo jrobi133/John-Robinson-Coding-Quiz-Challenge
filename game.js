@@ -3,7 +3,6 @@ const choices = Array.from(document.getElementsByClassName("choice-text"));
 const questionCounterText = document.getElementById('questionCounter');
 const scoreText = document.getElementById('score');
 const startingMinutes = 1;
-var currentTime = startingMinutes * 60;
 
 let time = startingMinutes * 60;
 let currentQuestion = {};
@@ -107,15 +106,11 @@ function updateCountdown() {
 
     countdownEl.innerHTML = `${minutes}:${seconds}`;
     time--;
-    if (minutes <= 0 && seconds <= 0) {
+    if (time <= 0) {
+        localStorage.setItem('mostRecentScore', score);
         return window.location.assign("/end.html");
 
     };
-    // if (!correct) {
-    //     time = time - 10;
-    //     console.log("asdf")
-    // }
-    // console.log("endOfCountdown")
 }
 // CONSTANTS
 const CORRECT_BONUS = 10;
@@ -158,7 +153,6 @@ choices.forEach(choice => {
 
         acceptingAnswers = false;
 
-        // startingMinutes = startingMinutes - 10;
 
         const selectedChoice = e.target;
         const selectedAnswer = selectedChoice.dataset["number"];
@@ -168,10 +162,9 @@ choices.forEach(choice => {
             selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
         if (classToApply === "correct") {
             incrementScore(CORRECT_BONUS);
+        } else if (classToApply === "incorrect") {
+            time = time - 10;
         };
-        // else(classToApply !== "correct") {
-        //     currentTime = currentTime - 10;
-        // };
         selectedChoice.parentElement.classList.add(classToApply);
 
         setTimeout(() => {
