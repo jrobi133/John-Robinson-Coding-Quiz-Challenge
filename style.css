@@ -19,6 +19,12 @@ h4 {
     margin-bottom: 1rem;
 }
 
+#score {
+    font-size: 5.4rem;
+    color: #56a5eb;
+    margin-bottom: 5rem;
+}
+
 h1 {
     font-size: 5.4rem;
     color: #56a5eb;

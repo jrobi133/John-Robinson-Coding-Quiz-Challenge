@@ -3,6 +3,7 @@ const choices = Array.from(document.getElementsByClassName("choice-text"));
 const questionCounterText = document.getElementById('questionCounter');
 const scoreText = document.getElementById('score');
 const startingMinutes = 1;
+var currentTime = startingMinutes * 60;
 
 let time = startingMinutes * 60;
 let currentQuestion = {};
@@ -35,6 +36,62 @@ let questions = [{
         choice4: "alert('Hello World')",
         answer: 4
     },
+    {
+        question: "Which built-in method removes the last element from an array and returns that element?",
+        choice1: "last()",
+        choice2: "get()",
+        choice3: "pop()",
+        choice4: "None of the above",
+        answer: 3
+    },
+    {
+        question: "Which of the following function of Boolean object returns the primitive value of the Boolean object?",
+        choice1: "toSource()",
+        choice2: "valueOf()",
+        choice3: "toString()",
+        choice4: "None of the above.",
+        answer: 2
+    },
+    {
+        question: "Which of the following function of String object is used to match a regular expression against a string?",
+        choice1: "concat()",
+        choice2: "match()",
+        choice3: "search()",
+        choice4: "replace()",
+        answer: 2
+    },
+    {
+        question: "Which of the following function of String object creates a string to be displayed in a big font as if it were in a <big> tag?",
+        choice1: "anchor()",
+        choice2: "big()",
+        choice3: "blink()",
+        choice4: "italics()",
+        answer: 2
+    },
+    {
+        question: "Which of the following function of String object causes a string to be displayed in fixed=pitch font as if it were in a <tt> tag?",
+        choice1: "fixed()",
+        choice2: "big()",
+        choice3: "blink()",
+        choice4: "bold()",
+        answer: 1
+    },
+    {
+        question: "Which of the follwing function of Array object adds one or more elements to the end of an array and returns the new length of the array?",
+        choice1: "pop()",
+        choice2: "push()",
+        choice3: "join()",
+        choice4: "map()",
+        answer: 2
+    },
+    {
+        question: "Which of the following function of Array object reverses the order of the elements of an array?",
+        choice1: "reverse()",
+        choice2: "push()",
+        choice3: "reduce()",
+        choice4: "reduceRight()",
+        answer: 1
+    },
 
 ];
 // Timer function
@@ -50,10 +107,19 @@ function updateCountdown() {
 
     countdownEl.innerHTML = `${minutes}:${seconds}`;
     time--;
+    if (minutes <= 0 && seconds <= 0) {
+        return window.location.assign("/end.html");
+
+    };
+    // if (!correct) {
+    //     time = time - 10;
+    //     console.log("asdf")
+    // }
+    // console.log("endOfCountdown")
 }
 // CONSTANTS
 const CORRECT_BONUS = 10;
-const MAX_QUESTIONS = 3;
+const MAX_QUESTIONS = 10;
 
 startGame = () => {
     questionCounter = 0;
@@ -103,9 +169,9 @@ choices.forEach(choice => {
         if (classToApply === "correct") {
             incrementScore(CORRECT_BONUS);
         };
-        // else(!correct) {
-        //     startingMinutes = startingMinutes - 10;
-        // }
+        // else(classToApply !== "correct") {
+        //     currentTime = currentTime - 10;
+        // };
         selectedChoice.parentElement.classList.add(classToApply);
 
         setTimeout(() => {
@@ -119,5 +185,6 @@ incrementScore = num => {
     score += num;
     scoreText.innerText = score;
 };
+
 
 startGame();
