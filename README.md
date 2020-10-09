@@ -14,7 +14,7 @@
 This app allows the user to take the Best Coding Quiz Challenge ever made. 
 
 Here is a link to the live application:
-https://jrobi133.github.io/John-Robinson-Password-Generator/
+https://jrobi133.github.io/John-Robinson-Coding-Quiz-Challenge/
 
 ## App Usage:
 
