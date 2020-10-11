@@ -2,7 +2,7 @@ const question = document.getElementById("question");
 const choices = Array.from(document.getElementsByClassName("choice-text"));
 const questionCounterText = document.getElementById('questionCounter');
 const scoreText = document.getElementById('score');
-const startingMinutes = 1;
+const startingMinutes = 5;
 
 let time = startingMinutes * 60;
 let currentQuestion = {};
@@ -108,7 +108,7 @@ function updateCountdown() {
     time--;
     if (time <= 0) {
         localStorage.setItem('mostRecentScore', score);
-        return window.location.assign("/John-Robinson-Coding-Quiz-Challenge/end");
+        return window.location.assign("end.html");
 
     };
 }
@@ -128,7 +128,7 @@ getNewQuestion = () => {
     if (availableQuestion.length === 0 || questionCounter > MAX_QUESTIONS) {
         localStorage.setItem('mostRecentScore', score);
         // go to the end page
-        return window.location.assign("/John-Robinson-Coding-Quiz-Challenge/end");
+        return window.location.assign("end.html");
     }
     questionCounter++;
     questionCounterText.innerText = questionCounter + "/" + MAX_QUESTIONS;
